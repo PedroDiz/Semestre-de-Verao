@@ -1,0 +1,23 @@
+READ UNCOMMITED -> Nao previne nenhuma anomalia (nivel de isolamento de treta)
+
+READ COMMITED -> Previne os dirty reads ( nao se efetua a leitura ate a outra transaçao ter acabado)
+
+REPEATABLE READ -> Previne non-repeatable read ( Permite que uma transaçao leia o mesmo valor, coloca um lock no registo)
+
+SERIALIZABLE -> Previne todas as anomalias incluindo o phantom tuple ( Faz com que as transaçoes se executem em série,
+má prática usar porque nao admite concorrencia dos recursos)
+
+Normalmente nao se usa predicate locking (bloquear uma tabela toda), o que se faz é bloquear entre uma gama de valores,
+por exemplo : select alunos where nota > 10 ( coloca um lock em todos os registos maiores que 10 até infinito)
+
+Escritas colocam locks exclusivos nao sendo preciso um nivel de isolamento maior que o read uncommited (norma ISO).
+
+
+Protocolos de Controlo de Concorrencia:
+
+- Locks
+
+- Timestamps (Permite acesso aos registos pela ordem que começaram as transaçoes)
+
+- Multi-versoes (Transaçoes guardam uma cópia estável dos registos, se uma nova transaçao escrever nao existe anomalia porque as
+outras transaçoes teem pose de uma cópia diferente)
