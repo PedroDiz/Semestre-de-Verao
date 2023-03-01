@@ -1,0 +1,47 @@
+wrapper -> permite fazer build do programa
+
+javac,java,javap,kotlinc,kotlin -> no path
+
+Software que usa ferramentas de LAE:
+
+Spring -> usado para injeçao de dependencias (DI)
+Guice -> usado para DI
+Jackson e Gson -> Json Parsers
+Automapper -> Mapeia tipos entre outro tipos
+
+Estas peças de software fazem inspeççao de tipos em tempo de execuçao
+
+Os ambientes de execuçao atuais possuem : Reflection API, Garbage Collector, entre outros.
+
+A reflection API permite saber todos os tipos e classes em runtime
+
+Usando a técnica de reflection o desempenho é mediocre. Para tal usa-se outra técnica usando Cojen Maker
+
+Java é a linguagem de programaçao e a plataforma/ambiente de execuçao 
+
+AVE (Ambiente Virtual de Execuçao) contem o compilador, VM, Bibliotecas Standard, Repo Central de Bibliotecas
+
+Para o java o repo central é o Maven
+
+A própria VM faz compilaçao do código, que é compilaçao just in time. Este tipo de compilaçao é diferente da compilaçao
+estática.
+
+A VM faz a traduçao do código JAVA para código nativo e guarda essa traduçao para as próximas vezes nao ter de compilar.
+
+O compilador do Java (javac), transforma o código java em bytecode que por sua vez sofre outra transformaçao para ser executado
+na máquina. Quem faz a segunda transformaçao é a VM, quem faz a transformaçao é o Jitter da VM.
+
+Para um código ser executado num certo CPU, a VM é preciso ser especifica a esse CPU.
+
+O javascript só possui uma compilaçao em runtime feito pela VM.
+
+Kotlin é possivel ser compilado para código javascript. O typescript também pode ser compilado para código javascript. Este
+código tem tipificaçao forte comparada ao JS.
+
+Quando se compila uma linguagem de alto nivel para outra de alto nivel é denominado "Transpiling"
+
+Kotlinc compila um ficheiro e.g app.kt para appkt.class
+
+JDKs podem ser a mesma e.g (Corretox86 e CorretoARM) e correrem em máquinas diferentes. O kotlinc compila o código em bytecodes
+e pode correr em qualquer lado desde que a VM "perceba" bytecodes.
+
