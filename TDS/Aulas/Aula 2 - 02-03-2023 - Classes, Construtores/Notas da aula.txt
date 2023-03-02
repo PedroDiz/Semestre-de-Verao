@@ -1,0 +1,25 @@
+import kotlin.test.* -> importa todas as bibliotecas necessarias para fzr testes
+
+init {} -> este bloco é corrido nos construtores secundarios caso nao exista construtor primário
+
+Caso exista construtor primário, o init só corre no construtor primário. O que acontece é que os construtores secundários
+invocam o construtor primário.
+
+get() -> É uma funçao vinculada a uma propriedade. Nao é uma variavel inicializada
+
+Em vez de se ter propriedades numa classe, fazer com que os parametros do construtor primário sejam propriedades, usando o val.~
+
+Any -> base de qualquer tipo em kotlin. Contem as funcoes base por ex: tostring e hashcode e equals.
+
+Para uma classe poder ser herdada precisa de ser "open".
+
+fazer override para fazer a implementaçao própria de uma funçao.
+
+!is -> usado para ver se um parametro é de um certo tipo
+
+usar a funçao require quando se exige que os parametros sejam duma certa maneira. Quando a funçao require falha, é lançado uma exceçao
+illegalargument com uma mensagem.
+
+tailrec -> faz com que o compilador transforme uma funçao recursiva em iterativa.
+
+

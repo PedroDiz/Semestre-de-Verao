@@ -1,0 +1,36 @@
+O nome de troca de threads no cpu é chamado de "context switch". É preciso guardar nas trocas de threads todo o seu conteúdo.
+
+Threads teem 3 estados:
+
+-ready : a thread está numa fila de espera
+-running: a thread está no momento a usar o CPU
+-blocked: a thread está bloqueada por alguma razao
+
+A thread pode ser tirada do estado running para ready (preemption). Pode ser devido ao tempo limitado do uso do CPU.
+
+O encadeamento de chamadas está dentro do stack da thread. Cada thread possui o seu stack.
+
+Quando acontece o context switch, está "marcado" no stack da thread, o ponto de retorno para depois se voltar para a thread.
+
+É tambem no context switch, necessário guardar os registos atuais non-saved.
+
+No objeto thread guarda-se o registo do RSP. 
+
+Troca de contexto. Consiste em trocar o valor do registo RSP.
+
+O objeto thread precisa de 2 campos: Onde começa a stack e onde está o contexto atual da stack.
+
+Quando se cria uma thread, o stack tem de ser devidamente populado. Isto é feito criando um contexto passando o endereço da funçao
+que a thread tem para executar.
+
+thread_init( uthread_t * newthread, void (*entry) () ). Neste caso o entry, que é funçao que a thread vai executar, é guardado no stack.
+
+
+O context switch guarda os registos.
+Guarda-se no rdi, a posiçao do contexto ( %rsp). De seguida vai-se buscar ao %rsi o contexto e coloca-se no %rsp.
+
+
+
+
+
+
