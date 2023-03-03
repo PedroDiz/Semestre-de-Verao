@@ -1,0 +1,50 @@
+Especificar factos, regras e dizer ao programa para resolver (prolog in a nutshell).
+
+predicate -> regras ou factos com um certo nome
+
+%predicate bigger/2 (2 parameters) -> Maneira como o prolog identifica um predicado.
+
+bigger(elephant,horse).
+bigger(horse, donkey).
+
+Um facto acaba com um ".". As 2 linhas de cima sao factos.
+
+As constantes dentro de um facto começam com letra minuscula
+Os predicatos começam também com letra minuscula.
+
+Regras:
+
+is_bigger(X,Y) :- bigger(X,Y). -> Isto significa que X > Y se existir um facto bigger(X,Y)
+
+is_bigger(X,Y) :- bigger(X,Z), is_bigger(Z,Y) -> Isto é uma regra que verifica x>y se x>z e z>y.
+
+Se tivermos os 2 predicados. Caso o primeiro falhe, o programa verifica o segundo.
+
+Para haver transitividade, é preciso have recursividade no próprio predicado e é preciso haver uma condiçao de paragem (um facto).
+
+Num predicado, verificar o facto primeiro e a recursao no final.
+
+:- consult('bigger.pl') -> É uma query que permite importar um ficheiro. Carrega factos e regras para a base de dados.
+
+% -> comentário de uma linha.
+/* */ -> comentário multi-linha.
+
+Como correr um programa prolog : "swipl <nome_ficheiro>".
+
+_ -> variavél sem nome.
+
+Built-in predicate:
+
+write('Hello world!'), nl. -> Esta query sucede se o print "hello world" suceder e se o "nl" (newline) suceder.
+
+Matching:
+
+born(mary,lisbon) = born(mary, X)
+
+X = lisbon
+
+Um matching funciona se o programa conseguir arranjar uma constante para fazer "replace" da variável. 
+
+
+
+
