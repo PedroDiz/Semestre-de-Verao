@@ -1,0 +1,70 @@
+História de AVEs:
+
+Os AVE modernos sao os AVEs do ano 1995 adiante com o lançamento do Java.
+
+Em 2002 surgiu .NET que tinha mais funcionalidades que o Java (Tipos genéricos, lambdas, yield)
+
+Só em 2015, o Java foi atualizado para suportar lambdas.
+
+Em 2008 surgiu o Scala, que introduz o conceito de Clojure.
+
+Em 2018 surge a linguagem Kotlin que reúne funcionalidades de várias linguagens e cujo código é executado pela JVM.
+
+Uma linguagem para correr num certo AVE precisa de respeitar o sistema de tipos da linguagem.
+
+Compilaçao em Kotlin:
+
+-.class = bytecode + Metadata -> Isto tem de estar de acordo com o Java Type System
+
+Compilaçao de classes/funçoes:
+
+- Por cada classe é gerado um ficheiro .class
+
+- Nada existe fora de uma .class!
+
+- Funçoes globais sao guardadas num outro ficheiro .kt que tem o nome do ficheiro sufixado com "kt".
+
+- Uma propriedade "var" adiciona mais contéudo ao ficheiro .class (um setter)-> este ficheiro mostra a metadata.
+
+Classes/Membros:
+
+- Classes teem membros
+
+- Membros podem ser: (1) - Campos, (2) - Funçoes/Métodos, (3) - Construtor.
+
+No java type system nao existe propriedade! Na compilaçao de kotlin para um .class, as propriedades sao transformadas em
+campos.
+
+Invoke:
+
+- No java, é denominado "invoke" para o correspondente de "call" do assembly.
+
+- Invokevirtual é usado para chamar funçoes
+
+- Invokespecial é usado para instanciar uma "class"
+
+Classpath:
+
+- O classpath é usado para o sistema conseguir encontrar as classes necessárias para um programa.
+- Pode-se usar a flag "-cp <path>" para fazer set do classpath
+
+
+Espaço em memória:
+
+- Espaço em memória é proporcional ao número de campos de uma classe.
+
+- Funçoes nao adicionam espaço em memória (getters e setters).
+
+Java/Kotlin:
+
+- Nao possui funçoes globais. Sao escritas dentro da classe.
+
+- final <=> imutável
+
+- VERBOSE VERBOSE E MAIS VERBOSE
+
+- Para impedir herença é usar "final". No kotlin por omissao nao dizer nada significa que é "final".
+
+- No kotlin para uma classe ser extendida é preciso ser "open".
+
+- Uma funçao numa classe com a keyword "final" nao pode ser redefinida.
