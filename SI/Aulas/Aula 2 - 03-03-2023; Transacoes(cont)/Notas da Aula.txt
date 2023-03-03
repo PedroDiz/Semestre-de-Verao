@@ -1,0 +1,35 @@
+procedimento armazenado -> código que corre no server, excusa-se de usar a internet.
+
+Transaçao -> conjunto de operaçoes que tem de ser atómico. Tudo ou nada.
+
+read(x) -> copiar dados do disco para um buffer em ram, ler do buffer.
+write(x) -> copiar dados para um buffer, a seguir copiar os dados para o disco.
+
+um ficheiro de logs é usado para se fazer audit.
+
+ficheiro de logs mantem um historico das operaçoes das transaçoes.
+
+anomalias:
+
+lost update -> duas transacoes, cada um com uma operaçao de escrita. A escrita da primeira transaçao é perdido.
+
+dirty read -> leitura de dados nao committed.
+
+incorrect summary -> transacoes teem update de um registo incoerente.
+
+non repeateable read -> transaçao le valor diferente de uma próxima vez devido a uma escrita intermédia.
+
+commit point de uma transaçao:
+
+- é escrito todos os passos no log file quando é feito commit
+- caso o sistema falhe pode procurar no log file por um start_transaction sem commit
+
+Propriedades ACID:
+
+Atomicidade, Consistencia, Isolamento, Persistencia.
+
+Consistencia -> database passa de um estado consistente para outro.
+Isolamento -> transaçoes "aparentam" ser isoladas.
+
+
+
