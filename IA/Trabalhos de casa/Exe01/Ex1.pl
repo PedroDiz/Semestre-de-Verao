@@ -15,7 +15,7 @@
    grandson(X,Y) :- parent(Y,Z), parent(Z,X).
    
    descendent(X,Y) :- parent(Y,X).
-   descendent(X,Y) :- parent(Y,Z), descendent(Z,W).
+   descendent(X,Y) :- parent(X,Z), descendent(Z,Y).
    
    cousin(X,Y) :- parent(Z,X), parent(W,Y), brother(Z,W).
    
