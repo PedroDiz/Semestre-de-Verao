@@ -1,0 +1,2 @@
+O programa simplesmente tenta montar uma soluçao que forme palavras que
+estejam presentes nos factos com as variaveis nada mais
