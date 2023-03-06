@@ -1,0 +1,53 @@
+packages servem para arrumar código e classes.
+
+razoes:
+
+1- se por alguma razao se definir duas classes com o mesmo nome. Usar packages para arrumar o código.
+
+2- por razoes de import. se um outro ficheiro quiser usufruir de funçoes, simplesmente fazer import do package.
+
+ex de pkg : package isel.tds. E para fazer import é import isel.tds.Date (para ir buscar o Date)
+
+razoes para fazer um import explicito em vez de import * (import isel.tds.Date vs import isel.tds.*)
+
+1- o compilador gasta mais tempo á procura de todas as funcoes/classes dentro de uma package que possivelmente nem vao 
+ser usados
+
+2- quando se faz import * de varios packages existe possibilidade tambem de haver colisao de nomes
+
+dataclass vs class:
+
+-o kotlin implementa para as dataclasses os métodos :tostring, equals e hashcode
+
+1- implementa o tostring com os parametros do construtor primário
+
+2- o equals verifica se 2 objetos sao iguais e compara as propriedades todas de um metodo
+
+funçao TODO:
+
+Quando uma funçao tem o troço "TODO", retorna uma exceçao "not implemented" e tem retorno "nothing"
+
+"nothing" significa que retorna NADA ao contrário do Unit que retorna void.
+
+Métodos de listas:
+
+- emptyList<T> -> cria uma lista vazia genérica
+
+- listOf() -> cria uma lista vazia genérica tambem
+
+- list(n) { "abc" } -> encher uma lista de n elems com um certo critério
+
+Concatenaçao de listas:
+
+listOf(elem) + elems
+
+é possivel concatenar um elemento <T> a uma lista:
+
+fun push(elem : T) { elems = elems + elem }
+
+dropLast(n) -> remove os n ultimos elementos de uma lista
+
+List é formado com um ArrayList.
+
+
+
