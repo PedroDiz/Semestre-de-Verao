@@ -1,0 +1,76 @@
+Técnicas para construçao de código thread-safe:
+
+1- Imutabilidade. Nao há problemas se as operaçoes forem read-only.
+
+2- Confinamento. Neste caso nao existe imutabilidade mas existe uma thread que tem ownership dos dados. Existem problemas de interferencia
+entre threads.
+
+3- Sincronizaçao explicita. Código que só pode ser executado por uma thread.
+
+Mutex/Lock:
+
+Mutex ou Lock é uma forma de sincronizaçao entre threads (permite acesso exclusivo a uma thread).
+
+Existem 2 métodos associados a um objeto Mutex:
+
+1- acquire() / lock()
+2- release() / unlock()
+
+Para fazer com que uma funçao seja executada de forma atómica na mesma instancia de uma classe em java é adicionar a keyword "synchronized".
+
+Ex: 	class counter {
+	private long value;
+	
+	public synchronized inc() { value++;}
+	
+	}
+
+Em kotlin seria:
+
+	class counter(private var value : Long = 0) {
+
+		fun inc() {
+			synchronized(this) { value++} 
+		}
+
+		fun get() : Long {
+			synchronized(this) { return value } 
+		}
+	}
+
+Esta alternativa nao é boa porque a referencia do "this" é pública.
+
+Usando o synchronized é melhor usar um objeto "mutex" (pode ser de qualquer tipo, dai o "any").
+
+private val mutex = Any()
+
+fun inc() {
+	synchronized(mutex) { value++ } 
+}
+
+Captura do valor na thread :
+
+Para se capturar em cada thread um valor diferente de uma certa váriavel é usar uma váriavel imutavel para guardar esse valor e que
+é diferente em cada iteraçao. (Olhar para a versao mais recente do echo server e como as threads obteem o clientID).
+
+ex: val localnum = num.
+
+Companion object -> objeto partilhado por todas as instancias da mesma classe ( isto foi usado no exemplo da transferencia entre
+contas bancárias). Dentro deste companion object declara-se um mutex partilhado. (Transfer1)
+
+Um lock é mau se esse lock tiver a bloquear todos os dados. Porque as operaçoes sao serializadas(Isto é o caso do lock presente
+no companion object).
+
+---------------------------------------Transfer 2--------------------------------------------------------------------------
+Para melhorar o desempenho da sincronizaçao é usar um lock exclusivo a uma certa conta.
+
+A soluçao do "Account Transfers" é usar um par de mutex's e obter a posse do lock do hashcode menor desses pares. Assim
+uma thread consegue fazer acquire dos dois mutex's num account transfer.
+
+
+
+
+
+
+
+

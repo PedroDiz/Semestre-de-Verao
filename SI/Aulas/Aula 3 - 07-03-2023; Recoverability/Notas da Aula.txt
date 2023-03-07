@@ -1,0 +1,91 @@
+Escalonamento é o conjunto das operaçoes de várias transaçoes concorrentes.
+
+Operaçoes que provocam conflito :
+
+1- Pertencem a transaçoes diferentes
+2- Acedem ao mesmo recurso X
+3- Uma das operaçoes é de escrita
+
+Escalonamento recuperável:
+
+- Escalonamentos nao recuperaveis nao devem ser permitidos pela BD
+- Transaçoes commited nunca precisam de ser rolled back.
+
+Escalonamento cascadeless:
+
+- Transaçao so le itens escritos por outras transaçoes apos elas terem feito commit
+- Evita cascading rollback
+
+Escalonamento estrito:
+
+- Transaçoes nao podem ler nem escrever um item X até que outra transaçoes que já tenha escrito em X tenha feito commit
+
+
+
+---------------------------------------------------------------EXERCICIOS------------------------------------------------------------
+
+Ex1 - Altera a transaçao T2 na fig.20.2-(b) para:
+
+read_item(x)
+x = x + M
+
+if x > 90 then exit
+else write_item(x)    <- alterado
+
+Discuta o resultado final do escalonamento das fig.20.3-(a) e (b) onde M=2 e N=2, em relaçao as questoes:
+
+a) A adiçao da condiçao acima altera o resultado final?
+b) O resultado produzido obedece à regra de consistencia (capacidade de x é 90, no máximo)?
+
+
+fig. 20.3
+
+(a)
+exemplo com x = 88.
+
+T1        |      T2 	
+	  |
+r(x)      |
+x = x-N   |
+	  |
+	  |	r(x)
+	  |	x=x+M
+w(x)      |
+r(y)	  |
+	  |
+	  |	if(x<90) then exit
+	  |     else w(x)
+          |
+y=y+n
+w(y)
+
+Resposta: Se x > 88, o resultado final é alterado (isto porque a T2 nao grava o valor de X).
+- Este resultado, contudo, obedece à regra de consistencia X <= 90 dado que X nao é alterado caso x>90.
+
+-----------------------------------------------------------EXERCICIO 2---------------------------------------------------------------
+
+Repetir o ex1 adicionado uma verificaçao em T1 para que Y nao exceda 90
+
+(a)
+exemplo com x = 88.
+
+T1        |      T2 	
+	  |
+r(x)      |
+x = x-N   |
+	  |
+	  |	r(x)
+	  |	x=x+M
+w(x)      |
+r(y)	  |
+	  |
+	  |	if(x<90) then exit
+	  |     else w(x)
+          |
+y=y+n     |
+if(y<90)exit|
+else w(y) |
+
+Resposta: A condiçao acima nao altera o resultado final a nao ser que inicialmente X > 88 e Y > 88.
+O resultado obedece à regra de que x<=90 e y<=90. (consistencia).
+
