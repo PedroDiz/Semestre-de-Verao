@@ -9,8 +9,9 @@
    parent(maria, afonso).
    parent(pedro, ana).
    
+   %not(X=Y) <=> X\=Y
    
-   brother(X,Y) :- parent(Z,X), parent(Z,Y).
+   brother(X,Y) :- parent(Z,X), parent(Z,Y), not(X=Y).
    
    grandson(X,Y) :- parent(Y,Z), parent(Z,X).
    

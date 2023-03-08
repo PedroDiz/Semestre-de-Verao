@@ -1,0 +1,47 @@
+All men are mortal
+Socrates is a man
+-----------------------
+Hence, Socrates is mortal.
+
+Em prolog seria:
+
+man(socrates) % fact
+
+mortal(X) :- man(X)
+
+E depois seria fazer a query:
+
+?- mortal(socrates)
+
+Lists:
+
+- Listas podem conter dados ou estarem vazias
+
+Listas consistem sempre de duas coisas : head e tail.
+
+[] -> empty
+
+[ann, tennis, tom, skiing], ann is the head of the list and [tennis, tom, skiing] is the tail of the list.
+
+[ann] <=> [ ann | [] ] <=> .(ann , [])
+
+A tail tem de ser sempre uma lista.
+
+Em standard prolog a lista [ann, tennis, tom, skiing] representa-se como : .(ann, .(tennis, .(tom, .(skiing, [])))).
+
+Em swipl a lista [ann, tennis, tom, skiing] representa-se como '[|]'(ann, '[|]'(tennis, '[|]'(tom, '[|]'(skiing, [])))).
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Exercicios de Listas:
+
+1.
+%Predicate first(X,Y) where X is the head of the list Y
+
+first(H, mylist(H, Tail)).
+
+?- first(X, mylist(a,mylist(b, mylist(c, empty)))).
+
+X = H = a
+
+Tail = mylist(b,mylist(c,empty)).

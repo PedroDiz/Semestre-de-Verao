@@ -1,0 +1,76 @@
+Componente - bloco mais básico de software usado para construir código.
+
+Tem as seguintes propriedades:
+
+-Metadata => tem uma auto descriçao
+
+-Pronto a usar => nao é preciso ser compilado estáticamente
+
+-API => conforme a uma interface
+
+
+-------------------------------------------------------TPC------------------------------------------------------------------
+
+
+invokespecial #12 // Method Date."<init>":(III)V 
+
+Descritor de Funçao:
+
+O "(III)V" => Os tres I's significam o tipo de parametros (opcional)
+
+O V significa o tipo de retorno.
+
+Descritor de Campo:
+
+-Identifica tipos. Nao NOMES!
+
+1- letra se for um tipo primitivo
+
+2- L.....; (...) => Nome com package com separador "/". (pesquisar)
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Se uma classe B deriva de uma classe A pode redefinir métodos virtuais de A.
+
+Uma funçao ser virtual significa nao ter a keyword "final" em Java e ter a keyword "open" em Kotlin.
+
+Tentar redefinir uma funçao nao virtual => Erro de compilaçao.
+
+Override em Java vs Kotlin:
+
+-Em kotlin é mesmo parte da linguagem enquanto em Java é uma anotaçao (serve para enriquecer a biblioteca).
+
+Membros Static:
+
+- Membros static pertencem á classe e nao existem nas instancias da classe. Ou seja só existem 1 membro em todas as classes daquele tipo~
+
+- Num membro static nao existe o this. Ou seja nao é possivel acesso a um membro nao estático.
+
+- Membros nao static nao pertencem á classe mas existem na instancia da classe. Ou seja existem tantos membros nao static
+a quantidade de vezes que a classe for instanciada.
+
+Companion Object:
+
+- Semelhante ao static do Java
+- Gera +1 ficheiro .class para o Companion Object
+
+No java os campos de um construtor sao nullable. O kotlin tem suporte de campos nao nullable.
+
+Lazy Load:
+
+-Carregamento tardio das classes necessárias
+
+-Se um ficheiro compilado ao ser posto em execuçao se nao tiver os ficheiro .class necessarios falha.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Seja foo() uma funçao antes de o Jitter compilar foo para código nativo. O classloader carrega os tipos usados por foo().
+
+
+
+
+
+
+
+
+
