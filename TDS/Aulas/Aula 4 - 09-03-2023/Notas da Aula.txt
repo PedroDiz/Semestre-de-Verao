@@ -1,0 +1,19 @@
+Scope functions: 
+
+-Usadas para fazer código mais compacto
+
+fun pop() : T = headNotNull.also { head = it.next }.elem
+
+Stack imutável:
+
+-Retornar novo stack baseado no stack antigo
+
+Pair:
+
+top() to pop() => Pair(top(), pop() ) 
+
+Is:
+
+- Faz o teste de identidade
+- Faz o teste se é null ou nao
+

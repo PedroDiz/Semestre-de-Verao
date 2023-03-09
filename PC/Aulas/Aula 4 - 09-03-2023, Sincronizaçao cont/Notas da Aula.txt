@@ -1,0 +1,27 @@
+No compose os dados pertecem á thread que expoe uma interface gráfica (Sincronizaçao através de confinamento).
+
+Semáforo:
+
+- Sincronizaçao de Dados
+- Tem como valor interno um número inteiro. Permite quantos acessos quanto o número associado ( valor >= 0 ).
+- É possível fazer acquire até o valor de unidades for maior que 0.
+
+Operaçoes de semáforo:
+-acquire(nunits:Int) -> nº de unidades que se quer obter. 
+-release() -> liberta uma unidade.
+
+No exercicio da queue, o semáforo serve para bloquear as threads de fazerem múltiplos gets quando a queue está vazia.
+
+No exercício da queue, o mutex serve para bloquear o acesso múltiplo á lista ligada. A lista ligada nao é thread safe.
+
+Interface Lock {
+  lock() : Unit 
+  unlock() : Unit
+}
+
+Uma das classes mais usados para lock é o ReentrantLock
+
+O Reentrant pode ser usado com a finalidade do mutex no mesmo exercício em que faz o bloqueio de acesso a dados.
+
+
+
