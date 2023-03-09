@@ -41,7 +41,7 @@ del(X, [H | T], [ H | Z]) :- H\=X, del(X, T, Z).
 
 conc([], Y, Y).
 
-conc([H|X], Y, [H|Z) :- conc(X,Y,Z). 
+conc([H|X], Y, [H|Z]) :- conc(X,Y,Z). 
 
 
 
