@@ -1,0 +1,31 @@
+Two phase locking garante serializaçao.
+
+Escalonamento nao recuperável:
+
+-Uma transaçao commited que precisa de ser rolled back nao é recuperável.
+
+Escalonamento recuperável:
+
+-Um escalonamento é recuperável se nenhuma transaçao le um item X que tenha sido escrito por outras transaçoes fizer commit antes da outra.
+-Ou seja uma transaçao pode ler um dado escrito por outra se a que escreveu fizer commit primeiro.
+-Isto tambem funciona se a transaçao que escreveu fizer abort. Significa que o segundo (que leu) tambem faz abort.
+
+Escalonamento cascadeless:
+
+-Uma transaçao T2 nao le algo escrito por T1 sem a transaçao T1 ter feito commit.
+
+Escalonamento série:
+
+-Transaçao T1 ocorre antes da T2 ou vice-versa.
+
+Escalonamento serializavel:
+
+-Transacoes T1 e T2 teem operaçoes intercaladas que produzem o mesmo resultado que um escalonamento série.
+
+Algoritmo para ver se um escalonamento é serializavel:
+
+- Para cada conflito cria-se um nó.
+- Se houver um ciclo entre 2 transaçoes nao é serializável.
+
+
+

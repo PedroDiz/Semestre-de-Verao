@@ -1,0 +1,28 @@
+1.
+first(empty,empty).
+first(H, mylist(H, Tail)).
+
+sintaxe prolog:
+
+first( [], []).
+first(H, [H | Tail]).
+
+2.
+
+tail(empty, empty).
+tail(Tail, mylist(H,Tail)).
+
+sintaxe prolog:
+
+tail([], []).
+tail(Tail, [H | Tail]).
+
+3.´
+
+del(empty, L, L).
+del(empty, empty, empty).
+del(X, mylist(X, Tail), Tail). => Retira o elemento na Head
+
+del(X, mylist(H,T), mylist(H,T1) :- del(X,T,T1).
+
+Homework: Fazer a matriz e remover um elemento dela.

@@ -1,0 +1,40 @@
+Para classes aninhadas o compilador coloca o "$". Exemplo : Person$Companion.count();
+
+Isto significa que Companion é uma classe aninhada de "Person" e que se quer invocar a funçao count() do Companion.
+
+getstatic Person.Companion // ler campo estático
+
+invokevirtual Person$Companion.count() // chamada a funçao count()
+
+invokespecial Person$Companion.count() => Nao existe o this. Vai buscar diretamente a funçao
+
+Métodos nao estáticos necessitam de uma instancia.
+
+public final int count() {  => É uma funçao que precisa de um Receiver ( precisa de ter um this/instancia)
+	return studentsCount;
+}
+
+public static final int count() { => É uma funçao que nao precisa de uma instancia.
+	return studentsCount;
+}
+
+
+Reflect:
+
+-API sobre a metadata. Conjunto de tipos que representam metadata e métodos para navegar na metadata.
+
+Class -> Representa um tipo.
+
+Cada tipo => Possui um único objeto Class.
+
+Um method numa classe possui uma funçao "invoke (Object ,..,Object) : Object"
+
+Este invoke necessita de um receiver(this) caso o method nao seja estático. Para tal é necessário usar o method "newInstance()"
+do construtor da classe.
+
+Caso seja estático passa-se o valor null.
+
+
+ClassLoader:
+
+-classloader.getResources("") -> vai buscar todos os ficheiros 
