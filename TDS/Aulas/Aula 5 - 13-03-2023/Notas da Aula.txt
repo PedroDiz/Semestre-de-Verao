@@ -1,0 +1,108 @@
+UML -> Maneira de descrever código em formato XML.
+Diagramas UML sao independentes da linguagem.
+
+@startuml
+"'" -> Linha de comentário.
+A <|- B -> Isto significa que B deriva de A
+class A {
++prop:Int
++push(item: T) : Stack<T>
+}
+
+@enduml 
+
++ -> publico
+- -> privado
+------------------------------------------UML Para o Stack---------------------------------------------------
+
+
+@startuml
+
+interface Stack {
++push(elem : T): Stack<T>
++top() : T
++pop() : Stack<T>
++isEmpty():Boolean
+
+-class Node<T> {
++elem:T
+}
+
+Node "*" <-- Node: +next -> É uma associaçao do next com o próprio node.
+
+-class StackNotEmpty<T> {
++push(elem : T)
++top()
++pop()
+isEmpty() = false
+}
+
+Stack <|.. StackNotEmpty -> Isto significa que StackNotEmpty implementa a interface Stack ( tracejado == implementaçao)
+
+Node <-- StackNotEmpty : -head -> O StackNotEmpty possui um node que é o Head.
+
+-class StackEmpty<T> {
++push(elem: T)
++top() = throw
++pop() = throw
++isEmpty() = true
+}
+
+Stack <|.. StackEmpty
+
+StackEmpty .> StackNotEmpty : << create >> -> Cria uma associaçao entre StackEmpty e StackNotEmpty para dizer que StackEmpty cria objetos de StackNotEmpty.
+A associaçao chama-se "create".
+
+StackEmpty <. StackNotEmpty : <<create >> -> Mesma coisa só que papeis trocados.
+@enduml
+
+---------------------------------------------------------------------------MODIFICAÇAO DO STACK------------------------------------------------------------------------
+
+Modificar o StackEmpty demaneira a só ser criado uma unica instancia de StackEmpty.
+
+private object StackEmpty : Stack < Any > {
+
+override fun push(elem : Any) = StackNotEmpty(Node(elem,null))
+override top()..
+override fun pop()..
+override fun isEmpty()...
+}
+
+fun <T> Stack() = StackEmpty as Stack <T>
+
+EM XML TEM-SE DE MUDAR CLASS STACKEMPTY PARA OBJECT STACKEMPTY:
+
+object StackEmpty <<SingleTon>> {
++push(elem:Any)
++top() = throw
++pop() = throw
++isEmpty() = true
+}
+
+Unit -> retorna um valor
+Nothing -> retorna nada ( usado para throws )
+
+Any -> todos os tipos derivam de Any
+Nothing -> deriva de todos os tipos
+
+------------------------------------------------------------------------STACK OF------------------------------------------------------------------------------------
+
+vararg -> numero de argumentos dinamico
+
+fun inline -> macro (C)
+
+fun <T> stackOf(vararg elems : T) : Stack<T> {
+	if (elems.isEmpty()) return Stack()
+	else {
+		var n : Node<T> = Node(elems[0], null)
+		elems.drop(1).forEach { n = Node(it,n) }
+		return StackNotEmpty(n)
+	}
+}
+
+Usando a funçao fold :
+
+fun <T> stackOf(vararg elems : T) : Stack <T> {
+	if (elems.isEmpty()) return Stack()
+	else return StackNotEmpty( elems.drop(1).fold(Node(elems[0], null)) { n, e -> Node(e,n) } )
+}
