@@ -1,0 +1,8 @@
+read_item(x) -> ler bloco do disco para memória (1) -> ler item x de memória para variavel (2).
+
+write_item(x) -> ler bloco do disco que contém X (1) -> altera x no bloco em memória (2)
+
+Cascading rollback:
+
+- Uma transaçao uncommited pode ser abortada e causar outras transaçoes a fazerem rollback. O escalonamento
+pode ser recuperável mas nao é eficiente.

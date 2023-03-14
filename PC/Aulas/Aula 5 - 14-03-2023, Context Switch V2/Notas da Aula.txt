@@ -1,0 +1,28 @@
+O mutex tem noçao da thread que fez o acquire() ao contrário do semáforo.
+
+É possivel uma thread chamar o mesmo reentrantlock desde que seja a thread que fez o lock() do reentrantlock.
+
+Controlo de acesso a dados de forma exclusiva -> mutex.
+Controlo de acesso a X threads (ex : Queue, Echo Server) -> semaforo.
+
+O escalonador round-robin usa uma fila circular. As threads que estiveram no estado running sao colocadas no fim da fila.
+
+Context Switch v2 / Thread Queue:
+
+- Funçao e argumento agora estam dentro da struct thread.
+- Em vez de no stack se guardar o ponteiro para a funçao a executar, guarda-se um ponteiro-se para uma funçao trampolim.
+- Esta funçao trampolim chama a funçao a executar com o argumento da struct thread.
+- A funçao trampolim agora guarda o output da funçao a executar.
+- O scheduler troca a thread running corrente para a thread na cabeça da Queue.
+- Threads que forem bloqueadas sao guardadas noutra estrutura de dados.
+- Threads podem por si mesmo transitar do estado running para o estado ready ( usando ut_yield ).
+- Uma thread transiciona do estado running para o estado blocked quando executa uma funçao bloqueante ( e.g semáforo ).
+
+LOOM :
+
+- Projeto que pretende a utilizaçao de virtual threads em cima da thread do sistema operativo em Java.
+
+Implementaçao da Aula:
+
+- O sleep na funçao receiver faz com que o sistema operativo bloqueie a thread de sistema, ou seja, bloqueia todas as threads de user.
+
