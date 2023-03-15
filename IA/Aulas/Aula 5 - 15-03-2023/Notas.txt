@@ -1,0 +1,27 @@
+%conc(L1,L2,L3) -> concatenar l1 e l2 na l3
+
+conc([],[],[]).
+
+conc([], L, L).
+
+conc([H1|Tail1], [H2|Tail2], [H1|Tail]) :- conc(Tail1, [H2|Tail2], Tail).
+
+%reverse(L1,L2) -> L2 is the L1 list reverted.
+
+reverse([], []).
+
+reverse([H | [] ], [ H | [] ]).
+
+reverse([H1|Tail1], L) :- reverse(T1,L1), addLast(H1,L1,L).
+
+%addLast (H1,L1,L) -> adiciona o elemento H1 ao final da lista H1 gerando o L.
+
+addlast(X, [], [ X | [] ]).
+
+addlast(H, [H1 | Tail1 ], [ H1 | Tail2]) :- addlast(H, Tail1, Tail2).
+
+sublist(S,L) :- conc( L1, L2 , L) , conc(S, L3, L2).
+
+permutation( [ X | L ], P) :- permutation( L, L1) , insert( X, L1, P).
+
+

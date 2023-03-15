@@ -1,0 +1,53 @@
+getMethod, getFields, getConstructor -> Apresenta todo o código publico e herdado
+
+getDeclaredMethod, getDeclaredFields, getDeclaredConstructor -> Apresenta todo o código incluindo o privado e nao herdado.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+if( m.getClass() == Method.class ) OU if( m instanceof Method)
+
+- A segunda expressao tambem retorna true se m for de uma classe derivada de Method.
+
+Métodos de Instancia:
+
+- O primeiro argumento é o This ( Observando o bytecode é feito push do This no Stack )
+- Tem que ter uma instancia da classe
+- Pertecem a instancia
+
+Métodos de Classe:
+
+- Nao recebe o argumento this
+- Nao possuem instancia / this
+- Pertencem á classe
+
+O stack nao pode ter valores depois das operaçoes todas.
+
+A API de reflexao sabe se um método for estático para ignorar o primeiro argumento
+
+Trabalho:
+
+- Cada método anotado numa class vai ter o seu próprio handler.
+- Stream permite usar métodos que o array nao permite (ex: .map). Permite escrever código funcional. 
+- Converter array para stream fazendo Arrays.stream
+
+java.util.stream vs java.io:
+
+-java.util.stream -> sequencia
+-java.io -> escrever em sockets, ficheiros,...
+
+Exemplo de libs que usam Reflect:
+
+- Spring
+- Automapper
+- Jackson => Json Parser
+- Gson => Json Parser
+- JUnit 
+- LogYi, logging => Ver o estado de um objeto (e.g. valor dos campos)
+
+Exercicio da Aula:
+
+- src / main -> lib (Java)
+
+- src / test -> tests (Kotlin)
+
+
