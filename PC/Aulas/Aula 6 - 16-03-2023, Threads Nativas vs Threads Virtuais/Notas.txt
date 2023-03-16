@@ -1,0 +1,23 @@
+Quando uma Thread está bloqueada está presente numa fila de espera:
+
+-Uma thread tenta adquirir acesso a x unidades que nao existem. Vai para uma fila de espera de Threads blocked. 
+-Quando x unidades "aparecem", o sincronizador desbloqueia a Thread e essa Thread volta para a fila Ready.
+
+Se existem UThreads porque o uso das Threads do Sistema Operativo?
+
+- Threads do Sistema Operativo conseguem fazer operaçoes de Kernel. Por isso qualquer Thread de Usermode é dependente de uma
+Thread do Sistema Operativo.
+
+- Uma Uthread invoca uma operaçao de bloqueio e consequentemente bloqueia todas as outras Uthreads.
+
+Echo Server:
+
+- Uma Thread por cliente nao é boa soluçao porque a um certo ponto as Threads de Sistema vao estar constantemente bloqueadas.
+- Resoluçao : Programaçao assíncrona ou Utilizaçao de Threads Virtuais.
+
+Threads Virtuais:
+
+- Poupam o trabalho do escalonador do sistema. Porque o escalonamento é feito em User Mode.
+- Minimizar o Stack de cada Thread.
+- Nao é eficiente para código recursivo.
+

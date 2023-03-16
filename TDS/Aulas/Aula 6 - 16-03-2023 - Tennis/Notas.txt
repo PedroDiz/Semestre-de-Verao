@@ -1,0 +1,17 @@
+MISU (Make Illegal States Unrepresentable) -> Fazer com que estados indesejados nao sejam representados. Usar tipos que façam sentido e nao deixem ambiguidade.
+
+enum class -> Player.values() => Retorna os valores do enumerado num Array.
+Cada um dos values de um enum é identificado como "name".
+
+Exceçoes principais : IllegalArgument, IllegalState.
+
+Fazer com que o estado do jogo seja sempre IMUTAVEL. No caso do score, cada vez que um jogador ganha existe um NOVO score.
+
+Num enum : O ordinal é a posiçao do this no array de enums.
+
+error() -> Lança uma exceçao illegal state com uma certa mensagem.
+
+Tennis:
+
+-Para melhorar a eficiencia do código que está cheio de whens => Dividir os estados do jogo. Ou seja seperar os estados
+Deuce, Advantage e Game dos Scores normais. 
