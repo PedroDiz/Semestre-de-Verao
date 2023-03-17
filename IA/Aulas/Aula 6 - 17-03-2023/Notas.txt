@@ -1,0 +1,18 @@
+%permutation(L1,L2).
+
+permutation( [], []).
+
+permutation( [H | Tail ] , L2) :- permutation( Tail, L) , insert( H, L, L2).
+
+Partir a Lista 1 e fazer a sua permutaçao e adicionar a Head da Lista Inicial á permutaçao.
+
+%insert (X,L,L1) - Inserir X em L dando resultado á lista L1.
+
+insert( X, [], [ X ]).
+
+insert( X, L, [X | L]). %Insera na frente
+
+insert( X, [ H | T], [ H | Tail1] ) :- insert (X , T, Tail1). %Insera na Tail1
+
+
+

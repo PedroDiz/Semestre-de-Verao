@@ -1,0 +1,9 @@
+Reflect API tem Overhead.
+
+Colocar a reflexao nos construtores. Fazer com que a API da reflexao nao seja chamada tantas vezes.
+
+Na imagem Logger.png. O logger faz uso do Printer.
+
+Anotaçoes sao extensoes da Metadata. Sao acessiveis via Reflect.
+
+Retention Policy -> (1 - Source) Compiler, (2 - Class) Metadata, (3 - Runtime) Reflect

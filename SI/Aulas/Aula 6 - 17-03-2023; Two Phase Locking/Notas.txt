@@ -1,0 +1,50 @@
+Embora existem algoritmos para detetar se um escalonamento é serializável ( ex : grafos de dependencias de transaçoes). O
+SGBD nao usa estes algoritmos, mas antes usa um protocolo de locking como 2PL ( 2 Phase Locking).
+
+Nota: O 2PL nao gera todos os escalonamentos serializaveis que sao possiveis. Nao sendo um algoritmo ideal.
+
+Nota: A ordem das operaçoes dentro de uma transaçao nao podem mudar sómente as operaçoes de um escalonamento.
+
+Locks:
+
+- Write(x) precisa de um Lock Exclusivo
+- Read(x) precisa de um Lock Shared 
+
+2PL Techniques:
+
+- Lock conversion : Convert the lock from one state to another.
+- Upgrading : Issue a read_lock operation then a write_lock operation.
+- Downgrading: Issue a write_lock operation then a read_lock operation.
+
+Guaranteeing Serializability by 2PL:
+
+- All locking operations precede the first unlock operation in the transaction
+
+Phases:
+
+Expanding phase:
+- Locks can be acquired but not released
+- Lock conversion upgrades must be done in this phase
+
+Shrinking phase:
+- Locks can be released but not required
+- Downgrades are done in this phase
+
+Serializability guaranteed:
+
+- If every transaction in a schedule follows 2PL, schedule guaranteed to be serializable
+- 2PL may limit concurrency in a schedule
+- some serializable schedules will be prohibited by 2PL
+
+Conservative 2PL :
+
+- Requires a transaction to acquire all locks before it begins.
+- Deadlock-free.
+
+Strict 2PL:
+
+- Transaction doesn't release exclusive locks until after it commits or aborts.
+
+Rigorous 2PL:
+
+-Transaction doesn't release any locks until after it commits or aborts.
