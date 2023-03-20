@@ -1,0 +1,5 @@
+Diagrama UML:
+
+-Definir alguma coisa que pertença á classe é escrever {static}
+
+uma classe sealed define os seus valores possiveis podendo a continuar ser herdada.
