@@ -1,0 +1,21 @@
+monitor -> sincronizaçao de low-level. Junta as sincronizaçoes de acesso a dados e de controlo para eliminar vulnerabilidades.
+
+Qualquer objeto no java pode ser um monitor.
+
+Métodos da classe Object:
+
+wait() -> epera incondicional até outra thread invocar o método notify() ou notifyall() ou signalAll() para este objeto. Este método
+faz as operaçoes do mutex e semáforo como uma instruçao atómica.
+
+Acesso ao monitor:
+- Threads esperam por uma variável condicional numa fila. Depois da espera vao para outra fila para terem acesso
+ao monitor.
+
+signalAll() -> notificaçao broadcast
+
+Delegaçao de Execuçao / Estilo Kernel:
+
+- Quem notifica o outro tem a obrigaçao de mudar o estado de modo a que o outro consiga entrar 100% das vezes.
+	
+
+

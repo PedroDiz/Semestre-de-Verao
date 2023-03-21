@@ -1,0 +1,74 @@
+Timestamps transaction:
+
+- Cada transaçao é associado uma marca temporal.
+
+Protocolos de timestamp que evitam deadlocks:
+
+Supondo que uma transaçao Ti tenta fazer lock num item X mas nao consegue porque outra transaçao Tj já o bloqueou. As regras seguidas
+pelos esquemas sao:
+
+- Wait-die:
+
+Se uma transaçao TS(Ti) < TS(Tj), Ti espera por Tj. Caso contrário Ti morre e recomeça com o mesmo timestamp.
+
+- Wound-wait:
+
+Se TS(Ti) < TS(Tj), entao Ti aborta Tj e recomeça Tj mais tarde com a mesma timestamp. Caso contrário Ti espera. 
+
+Estes algortimos normalmente nao sao usados..
+
+Dealing with Deadlock ands Starvations:
+
+Victim selection:
+
+- Abortar uma transaçao em caso de deadlock
+
+Timeouts:
+
+- Se o sistema mais do que X tempo por uma transaçao. Abortar a transaçao
+
+Starvation:
+
+- Ocorre quando uma transaçao nao consegue prodecer em X tempo enquanto as outras transaçao podem.
+
+Concurrency Control Based on Timestamps:
+
+Generating Timestamps:
+
+- Counter
+- Current date/time value of the system clock. Ensure that no 2 transactions have the same exact timestamp.
+
+General approach:
+
+- Enforce equivalent serial order on the transactions based on their timestamps.
+
+Timestamp ordering:
+
+- Permite a paralelizaçao das operaçoes
+
+- Garantir que a ordem da timestamp é seguida para cada par de operaçoes conflituosas.
+
+Each database item S assigned two timestamp values :
+
+- read_TS(S) & WRITE_TS(S)
+- O timestamp da leitura feita com sucesso mais recente
+- O timestamp da escrita feita com sucesso mais recente
+
+Basic TO algorithm:
+
+- Nao proteje de cascading rollbacks.
+- Se um par de operaçoes conflituosas for detetada. A operaçao mais recente é abortada.
+
+Caso uma transaçao T queira escrever ( write_item(X) ). O seguinte check é feito:
+
+- Verificar se a marca temporal de read_item(X) e write_item(X) sao inferiores á timestamp do T. Se verificar escrever e
+alterar a marca temporal de write_item(X) para TS(T). Caso se nao verificar, abortar T.
+
+Isto é para garantir a ordem das timestamps.
+
+No caso de uma transaçao T queira ler ( read_item(X) ). O seguinte check é feito:
+
+- Verificar se a marca temporal de write_item(X) é inferor á timestamp do T. Se isto se verificar, ler item X e alterar a marca
+temporal de read_item(X) para TS(T). Caso se nao se verificar, abortar T.
+
+	
