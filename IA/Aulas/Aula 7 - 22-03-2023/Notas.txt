@@ -1,0 +1,61 @@
+printBoard( [ H | T ] ) :- 
+
+
+createBoard(B) :-
+
+B = [ [.,.,.,.,.] , [.,.,....], ... ]
+
+%X/Y = POS
+process(B, X/Y, ...) :- write(X), write(Y)
+
+readOption(pos) :- write('X/Y?'), nl , read(Pos).
+
+?- readOption(pos)
+
+X/Y?
+
+z/e
+
+Pos = z/e.
+
+ntho( Index, List, Elem) -> Elemento na posiçao index.
+
+Exemplos:
+
+?- ntho(0, [1,2,3], E)
+
+E = 1
+
+?- ntho(1, [ [1,2,3 ] , [4,5,6 ] ] , E1 ), ntho(2, [ [1,2,3] ], E1), E1==2.
+
+false. E1 = [4,5,6]
+
+
+template(B) :- B = [ [1,2,3] , [4,5,6] ]
+
+getElemBoard(B,X/Y, Elem) :-
+
+nth1(X, B , Row),
+
+nth1(Y, Row, Elem).
+
+?- Template(B), getElementBoard(B,1/2, E)
+
+usando o ntho, E = 6.
+
+nth1, E = 2.
+
+
+if else implementation:
+
+read(x) :- 
+
+X == 1, Win = true, ! 
+
+; Win=false.
+
+lessOrEqual(X, Value) :-
+
+X== Value, !
+;
+X < Value.

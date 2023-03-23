@@ -1,0 +1,7 @@
+Uma thread que espera por uma condition variable é automaticamente tirado do mutex (monitor).
+
+Ao ser notificado por uma thread. A thread que estava á espera entra na fila de espera para a posse do mutex para entrar
+no monitor.
+
+Uma thread pode ser ultrapassada para a posse do mutex (Barging).
+

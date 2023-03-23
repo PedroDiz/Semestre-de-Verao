@@ -2,7 +2,7 @@ class Board {
     private val columns = 8
     private val rows = 8
     private val Board = Array(rows) {CharArray(columns)}
-    private var diskCount = 0
+    private var diskCount = 4
     private var whiteDisks = 2
     private var blackDisks = 2
 
@@ -34,28 +34,58 @@ class Board {
     }
 
     private fun checkFlank(row : Int, column : Int, rowShift : Int, columnShift : Int, player: Player) : List<Pair<Int,Int>> {
+        val list = mutableListOf<Pair<Int,Int>>()
+
+        var row = row + rowShift
+        var column = column + columnShift
+        while (isInsideBoard(row, column) && Board[row][column].isLetter()) {
+            if (player.findPlayerByChar(Board[row][column]) == player.other(player)) {
+                list.add(Pair(row,column))
+                row += rowShift
+                column += columnShift
+            }
+            else {
+                return list
+            }
+        }
         return emptyList()
     }
 
     private fun checkAllFlanks(row : Int, column : Int , player: Player) : List<Pair<Int,Int>> {
-        return emptyList()
+        val list = mutableListOf<Pair<Int,Int>>()
+        for(rowShift in -1..1) {
+            for(columnShift in -1..1) {
+                if(rowShift == 0 && columnShift == 0) continue
+                list.addAll(checkFlank(row,column,rowShift,columnShift,player))
+            }
+        }
+        return list
     }
 
     private fun flipDisks(row : Int, column : Int, player: Player) : Unit {
-        if(player == Player.WHITE) Board[row][column] = 'W'
-        else Board[row][column] = 'B'
-    }
-
-    private fun placePiece(player : Player,row : Int, column : Int) : String {
-        if(!Board[row][column].isLetter() && player == Player.WHITE) {
+        if(player == Player.WHITE) {
             Board[row][column] = 'W'
             whiteDisks++
-            val list = checkAllFlanks(row,column,player)
-            list.forEach { flipDisks(it.first, it.second, player) }
+            blackDisks--
         }
-        else if(!Board[row][column].isLetter() && player == Player.BLACK) {
+        else {
             Board[row][column] = 'B'
             blackDisks++
+            whiteDisks--
+        }
+    }
+    private fun placeOnEmptySquare(player : Player,row : Int, column : Int) {
+        if(player == Player.WHITE) {
+            Board[row][column] = 'W'
+        }
+        else {
+            Board[row][column] = 'B'
+        }
+        if(player == Player.WHITE) whiteDisks++ else blackDisks++
+    }
+    private fun placePiece(player : Player,row : Int, column : Int) : String {
+        if(!Board[row][column].isLetter()) {
+            placeOnEmptySquare(player,row,column)
             val list = checkAllFlanks(row, column, player)
             list.forEach { flipDisks(it.first, it.second, player) }
         }
@@ -63,6 +93,7 @@ class Board {
             return "InvalidMove";
         }
         currentPlayer = player.other(player)
+        diskCount++
         return "ValidMove"
     }
 
