@@ -1,0 +1,8 @@
+Quando o algoritmo minimax encontra um nó folha chama uma funcao "static val" que avalia o custo da board.
+
+No hex nao existe empates:
+
+WIN -> +1
+LOSS -> -1
+
+Alpha-beta algorithm : Economizes the search by skipping unnecessary nodes.

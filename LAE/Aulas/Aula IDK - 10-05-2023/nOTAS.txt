@@ -1,0 +1,19 @@
+Collection pipelines:
+
+Teem 1 operaçao fonte, 1 ou várias operaçoes intermedias e 1 operaçao final.
+
+Sequencias -> LAZY 
+
+Se nao houver operaçao terminal, nao existe processamento
+
+Collections -> EAGER
+
+Há sempre processamento
+
+Processamento Horizontal:
+
+Faz a operaçao para todos os elementos e passa para a proxima operaçao
+
+Processamento Vertical:
+
+Faz todas as operaçoes para um elemento da sequencia

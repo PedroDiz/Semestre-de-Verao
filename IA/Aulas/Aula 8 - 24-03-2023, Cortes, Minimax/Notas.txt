@@ -1,0 +1,25 @@
+Exercicio 5.1
+
+Programa:
+
+p(1).
+
+p(2) :- !
+
+p(3).
+
+Todas as respostas para as queries:
+
+a) ?- p(X).
+
+b) ?- p(X), p(Y).
+
+c) ?- p(X), !, p(Y).
+
+Soluçao:
+
+a) X= 1; X= 2;
+
+b) X= 1, Y=1; X=1, Y=2; X=2; Y=1; X=2, Y=2
+
+c)X=1, Y=1 ; X=1, Y=2 . Com o corte nao testa mais possibilidades do X.

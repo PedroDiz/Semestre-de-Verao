@@ -1,0 +1,27 @@
+Multiversion Concurrency Control:
+
+- Several versions of an item are kept by the system.
+
+- Some read operations that would be rejected in other techniques can be accepted if the read operation reads from a older
+version of the item.
+
+- More storage required.
+
+Optimistic techniques:
+
+- No checking is done while the transaction is executing.
+
+- Updates not applied until transaction is validated.
+
+- Validation phase checked whether transaction updates violate serializability.
+
+- Good if interference is low
+
+Snapshot Isolation:
+
+- Transaction sees data items based on commited values ( does not see updates that occur after transaction starts)
+
+- Read operations do not need locks.
+
+- Write operations require write locks.
+

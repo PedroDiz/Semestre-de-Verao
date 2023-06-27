@@ -1,0 +1,10 @@
+In the second project you have to code iterative deepening and A* solver in prolog ( algorithms are in Github AI)
+
+-SA and GA are available in Matlab/Octave
+
+SA:
+
+- How to code a solution?
+
+In sudoku, it could be an array representing ( or a matrix )
+

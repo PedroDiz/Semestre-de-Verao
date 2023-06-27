@@ -1,0 +1,15 @@
+state space of a problem <=> rules of the game
+
+nodes in state space -> situations
+
+arcs in the state space -> legal moves, or actions , or solution steps
+
+A problem is defined by :
+
+- a state space
+- a start node
+- a goal condition, goal nodes are the nodes that satisfy the condition
+
+s(X,Y) -> represents a state space. It's true if there's a legal move in the state space from node X to Y.
+
+ 

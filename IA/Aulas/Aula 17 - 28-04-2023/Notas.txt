@@ -1,0 +1,11 @@
+Operadores de cruzamento criam descendentes
+a partir dos pais herdando as propriedades
+"boas" dos pais.
+
+Exemplo: 
+- Se o pai for um horário bem feito, o offspring
+deverá manter as boas caracteristicas do horário
+e modificar as caracteristicas menos boas.
+
+No SA, otimiza-se 1 soluçao apenas
+No GA, otimiza-se uma populaçao de solucoes

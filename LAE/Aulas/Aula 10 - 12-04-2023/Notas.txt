@@ -1,0 +1,175 @@
+Construtor de Instancia:
+
+- Iniciar campos de instancia
+
+Construtor estático:
+
+- Iniciar campos estáticos
+
+Usando a ferramenta javap:
+
+- static {} => Construtor estático
+
+exemplo :
+
+private ScratchImpl();
+
+Code:
+
+	0: aload_0
+	1: invokespecial #1
+	4: return
+
+Cada opcode ( por exemplo : invokespecial ) = 1 byte
+
+Os numeros antes dos ":" sao os offset de cada instruçao.
+
+Os numeros depois do "#" sao os indices para uma "constant pool". Sao os ids de membros e constantes. Cada indice tem
+tamanho de 2bytes.
+
+Para analizar a constant pool : javap -v
+
+Nomes de construtores:
+
+Instancia : <init>
+
+Estático : <cinit>
+
+Operand Stack:
+
+- Operacoes / Funcoes consomem operandos do Stack e colocam o resultado no Stack
+
+- Diferente de Thread Stack, pois este nao possui registos.
+
+Atribuiçao de Valor :
+
+aconst_null => push null
+
+put static #10 => colocar no inst, o valor null.
+
+
+Regra Safety:
+
+- No final de execuçao de um método o Evaluation Stack = { } 
+
+Construtor de instancia:
+
+private ScratchImpl();
+
+Code:
+
+	0: aload_0
+	1: invokespecial #1
+	4: return
+
+Primeira operaçao : Fazer push do this
+Segunda operaçao : Invocar o construtor de base sobre o this
+Ultima operaçao : retornar
+
+Tipos de invoke :
+
+- (1) invokestatic => Nao passa o this
+
+- (2) invoke_special => Passa o this, chamada nao polimorfico => despacho estático
+
+- (3) invoke_virtual => Passa o this, chamada polimorfica => despacho dinamico
+
+- (4) invoke_interface => Passa o this, chamada polimorfica => despacho dinamico. Difere do invoke_virtual porque é invocado
+em métodos de interface.
+
+Este bytecode de invoke tem uma ordem crescente de pior desempenho. Ou seja o invokestatic tem melhor desempenho que o
+invoke_interface.
+
+Decisao da JVM ao gerar o tipo de invoke:
+
+class A { void foo() }
+
+class B extends A { void foo() } -> redefine foo()
+
+class C extends A { void foo() } -> redefine foo()
+
+void doIt(A a) { a.foo() } => Como nao se sabe que tipo de a que se vai obter. A jvm coloca o invoke como invoke_virtual
+para conseguir haver polimorfismo
+
+Outro caso:
+
+class D extends A { void foo() { super.foo() } } 
+
+- Se fosse gerado o invoke_virtual neste caso gerava um ciclo infinito.
+
+- Neste caso é gerado um invoke_special. Para chamar exatamente o foo da classe mae. 
+
+load e store:
+
+_load_ => push no stack
+
+_store_ => pop no stack
+
+O prefixo é o tipo que se faz push/pop.
+
+Tipo : 
+
+i - int
+d - double
+a - address
+
+O sufixo é o indice.
+
+O indice começa nos argumentos e depois com as variaveis locais.
+
+Short form:
+
+- aload_0
+- aload_1
+- aload_2
+- aload_3
+
+Ocupam 1 byte
+
+- aload 4 => 4 é um index 
+
+Ocupa 2 byte
+
+Criaçao de instancias (bytecode) :
+
+public static void main(java.lang.String[]);
+	Code:
+		0: new #7
+		3: dup
+		4: invokespecial
+
+- A instruçao new gera uma referencia para a class scratchimpl
+- A instruçao dup duplica a referencia gerado do new. Agora existem 2 referencias para a classe
+- A instruçao invokespecial consome uma das referencias e gera uma instancia.
+
+getstatic => faz push no stack
+
+putstatic => faz pop no stack
+
+iadd => adiciona os 2 valores no topo do stack, fazendo pop dos 2 argumentos e faz push do resultado.
+
+Bytecode Control Flow:
+
+if ... -> Salto condicional
+
+Números que sufixam o if, sao os offsets para o qual se pode saltar.
+
+Benchmarking:
+
+- Desempenho / Performance
+
+JMH => Java MicroBenchmarking Harness
+
+Erros em benchmarking : 
+
+1- Retirar a instanciaçao do dominio
+
+2- warmup (execuçao da funçao varias vezes torna a sua execuçao mais rapida)
+
+3- mediçao em ms pode nao ser precisa o suficiente
+
+4- IO (nao usar funcoes de IO)
+
+5- Nao usar o IDE ( o intellij tem mais overhead sobre a maquina virtual)
+
+6- baseline

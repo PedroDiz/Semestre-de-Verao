@@ -1,0 +1,7 @@
+Propriedades das anotaçoes so podem ser do tipo:
+
+-Primitivo
+-String
+-Enumerado
+-Class
+-Array de um deles

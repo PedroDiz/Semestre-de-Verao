@@ -1,0 +1,4 @@
+DAL -> Data access layer
+
+JPA -> Java Persistent API
+

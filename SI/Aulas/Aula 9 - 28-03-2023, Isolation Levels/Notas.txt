@@ -1,0 +1,26 @@
+Nao fazer BEGIN TRANSACTION dentro de uma STORED PROCEDURE.
+
+Transaction isolation levels:
+
+Isolation level Serializable: Preserves consistency in all situations. Recommended when every update is crucial.
+
+Isolation level Repeatable Read: Similar to Serializable except Phantom can occur.
+
+Isolation level Read Committed: In this isolation level, the transaction can see differente values of the same data item.
+
+It applies a write lock and keeps it until it commits. It applies a shared lock but the lock is released as soon as the item is read.
+
+Isolation level Read Uncommitted: In this isolation level a transacton does not apply a shared lock or a write lock.
+
+
+The select ... for update acquires a ROW SHARE LOCK on a table. This lock conflicts with the EXCLUSIVE lock needed for an UPDATE.
+
+The select ... for update skip locked. This allows to query rows that have no locks.
+
+The select for share prevents other trasanctions of updating a certain row. But it doesn't prevent transactions from selecting it.
+
+The select for no key update behaves similiar to select for update but it allows "select for share"
+
+The select key share behaves similiar to select for share. It prevents deletion of rows but it doesn't prevent updates to
+the rows that do not modify key values.
+

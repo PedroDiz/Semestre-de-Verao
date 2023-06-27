@@ -1,0 +1,16 @@
+Dar a justiça de threads que necessitam de mais permits terem também chance de o fazerem. Utilizar um mecanismo de FIFO.
+
+Um semáforo FIFO.
+
+Notificaçao Especifica: 
+
+- Cada pedido tem uma condiçao do mutex próprio.
+
+- Notificar as threds que tenham a condiçao a true.
+
+- Permite uma thread notificar a thread especifica em vez de fazer broadcast.
+
+Muito Importante!:
+
+-As threads quando sao notificadas com um signalAll() competem para conseguirem o mutex do monitor. Ou seja
+sem usar delegaçao de execuçao nao é possivel garantir que todas as threads que estavam á espera consigam executar. 

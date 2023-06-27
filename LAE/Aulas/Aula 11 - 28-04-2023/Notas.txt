@@ -1,0 +1,71 @@
+Categorias de Tipos :
+
+Tipo valor : Tipos primitivos
+
+Tipo referencia : Classes ou interfaces
+
+Conversoes:
+
+TR <-> TR - casting -> gera 1 bytecode no caso de downcast (checkcast)
+
+TV <-> TV - coercion -> gera multiplos bytecodes
+
+TV -> TR - boxing -> Chama funçoes auxiliares
+
+TR -> TV - unboxing -> Chama funcoes auxiliares
+
+
+Casting -> Muda a referencia
+Coercion -> Muda o seu valor. Coercion de int para float.
+
+Os TV sao instanciados in-place e vao para o Stack
+
+Os TR sao instanciados e vao para o Heap
+
+
+
+Quando um TR é colocado no Heap, existe um espaço reservado que é o Header
+
+Este header dá informaçoes ao Garbage Collector nomeadamente se o objeto está vivo ou seja se tem referencias para ele.
+
+
+Boxing :
+
+- Colocar um tipo primitivo presente no stack no Heap, colocando-o dentro de uma caixa.
+
+Ex : var n = 5
+val nr : Any = n
+
+Unboxing:
+
+- Pegar num tipo presente no heap e colocar no Stack.
+
+Ex: 
+
+var n = 5
+val nr : Any = n
+val a = (int) nr;
+
+
+Cada tipo primitivo tem um Wrapper associado:
+
+int -> Integer
+float -> Float
+short -> Short
+
+Passagem de primitivo para wrapper -> boxing
+Passagem de wrapper para primitivo -> unboxing
+
+Esta passagem é automatica, nao tendo de escrever código
+
+Funçao de boxing:
+
+- Integer.valueOf(int) 
+
+Funçao de unboxing:
+
+- Integer.intValue() : Int
+
+
+
+

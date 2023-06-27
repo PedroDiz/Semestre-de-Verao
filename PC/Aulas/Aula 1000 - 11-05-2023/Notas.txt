@@ -1,0 +1,11 @@
+Programaçao assincrona
+
+- Nao depende da linguagem, depende do ambiente de execuçao.
+
+- Retorna um future ou tem como parametro um callback.
+
+Byte Buffers:
+
+- Flip() -> coloca o capacity no limit
+
+- Clear() -> coloca o buffer no estado inicial.
